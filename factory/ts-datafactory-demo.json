@@ -1,0 +1,9 @@
+{
+	"name": "ts-datafactory-demo",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "d0b8223a-a5fc-43ab-8a5a-4734b0f77e53",
+		"tenantId": "758077ec-66b9-441c-9537-b0939ca2dfe8"
+	}
+}
