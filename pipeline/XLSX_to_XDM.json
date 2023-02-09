@@ -42,66 +42,10 @@
 				"typeProperties": {
 					"variableName": "LoadID",
 					"value": {
-						"value": "@activity('Get New Load ID').output",
+						"value": "@activity('Get New Load ID').output.firstRow.loadid",
 						"type": "Expression"
 					}
 				}
-			},
-			{
-				"name": "Insert into SA Table",
-				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "Set Load ID",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "ExcelSource",
-						"storeSettings": {
-							"type": "AzureBlobStorageReadSettings",
-							"recursive": true,
-							"enablePartitionDiscovery": false
-						}
-					},
-					"sink": {
-						"type": "AzureSqlSink",
-						"writeBehavior": "insert",
-						"sqlWriterUseTableLock": false
-					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "NicknamesXLSX",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "Nicknames_SA_Table",
-						"type": "DatasetReference"
-					}
-				]
 			}
 		],
 		"variables": {
