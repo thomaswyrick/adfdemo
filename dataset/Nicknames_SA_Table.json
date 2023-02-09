@@ -1,0 +1,106 @@
+{
+	"name": "Nicknames_SA_Table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SemarchyDataLocation",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "B_LOADID",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "GIVEN_NAME",
+				"type": "nvarchar"
+			},
+			{
+				"name": "B_CLASSNAME",
+				"type": "nvarchar"
+			},
+			{
+				"name": "B_ERROR_STATUS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "B_ORIGINALBATCHID",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "B_OPERATIONID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "B_DUPSOPERATIONID",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "B_DUPSMERGETARGET",
+				"type": "nvarchar"
+			},
+			{
+				"name": "B_DELETETYPE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "B_DELETEDATE",
+				"type": "datetime2",
+				"scale": 6
+			},
+			{
+				"name": "B_DELETEAUTHOR",
+				"type": "nvarchar"
+			},
+			{
+				"name": "B_DELETEOPERATION",
+				"type": "nvarchar"
+			},
+			{
+				"name": "B_DELETEPATH",
+				"type": "nvarchar"
+			},
+			{
+				"name": "B_COPIEDFROM",
+				"type": "nvarchar"
+			},
+			{
+				"name": "B_CREDATE",
+				"type": "datetime2",
+				"scale": 6
+			},
+			{
+				"name": "B_UPDDATE",
+				"type": "datetime2",
+				"scale": 6
+			},
+			{
+				"name": "B_CREATOR",
+				"type": "nvarchar"
+			},
+			{
+				"name": "B_UPDATOR",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TOP_NICKNAME",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ALL_NICKNAMES",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "SA_NICKNAME"
+		}
+	}
+}

@@ -8,6 +8,7 @@
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
+			"sheetName": "GD_NICKNAME",
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": "3-import-data-1-Nicknames.xlsx",
