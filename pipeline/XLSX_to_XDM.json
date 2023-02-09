@@ -21,7 +21,7 @@
 						"storedProcedureParameters": {
 							"P_DATA_LOCATION_NAME": {
 								"type": "String",
-								"value": "dloc"
+								"value": "CustomerB2c"
 							},
 							"P_LOAD_DESCRIPTION": {
 								"type": "String",
