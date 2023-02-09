@@ -1,0 +1,12 @@
+{
+	"name": "SemarchyRepository",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SemarchyRepository",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}

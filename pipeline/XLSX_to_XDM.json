@@ -4,7 +4,7 @@
 		"activities": [
 			{
 				"name": "Get New Load ID",
-				"type": "SqlServerStoredProcedure",
+				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -15,47 +15,42 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[GET_NEW_LOADID]",
-					"storedProcedureParameters": {
-						"P_DATA_LOCATION_NAME": {
-							"value": "dloc1",
-							"type": "String"
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[GET_NEW_LOADID]",
+						"storedProcedureParameters": {
+							"P_DATA_LOCATION_NAME": {
+								"type": "String",
+								"value": "dloc1"
+							},
+							"P_LOAD_DESCRIPTION": {
+								"type": "String",
+								"value": "XSLX Blob to XDM Demo"
+							},
+							"P_PROGRAM_NAME": {
+								"type": "String",
+								"value": "ADF"
+							},
+							"P_USERNAME": {
+								"type": "String",
+								"value": "semadmin"
+							},
+							"return_value_argument": {
+								"type": "Single",
+								"value": {
+									"value": "@variables('LoadID')",
+									"type": "Expression"
+								}
+							}
 						},
-						"P_LOAD_DESCRIPTION": {
-							"value": "Pull data from AZ Blob XLSX",
-							"type": "String"
-						},
-						"P_PROGRAM_NAME": {
-							"value": "ADF",
-							"type": "String"
-						},
-						"P_USERNAME": {
-							"value": "semadmin",
-							"type": "String"
-						},
-						"return_value_argument": {
-							"value": "",
-							"type": "Decimal"
-						}
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "SemarchyRepository",
+						"type": "DatasetReference"
 					}
-				},
-				"linkedServiceName": {
-					"referenceName": "SemarchyRepository",
-					"type": "LinkedServiceReference"
 				}
-			},
-			{
-				"name": "Lookup1",
-				"type": "Lookup",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": []
 			}
 		],
 		"variables": {
