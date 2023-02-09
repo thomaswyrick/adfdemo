@@ -1,0 +1,20 @@
+{
+	"name": "NicknamesXLSX",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "XLSX_Blob",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "3-import-data-1-Nicknames.xlsx",
+				"container": "csvs"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": []
+	}
+}
