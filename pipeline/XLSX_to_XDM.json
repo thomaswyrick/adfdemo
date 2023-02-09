@@ -34,7 +34,7 @@
 					{
 						"activity": "Get New Load ID",
 						"dependencyConditions": [
-							"Completed"
+							"Succeeded"
 						]
 					}
 				],
