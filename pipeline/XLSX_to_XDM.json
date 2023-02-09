@@ -36,11 +36,7 @@
 								"value": "semadmin"
 							},
 							"return_value_argument": {
-								"type": "Single",
-								"value": {
-									"value": "@variables('LoadID')",
-									"type": "Expression"
-								}
+								"type": "Single"
 							}
 						},
 						"queryTimeout": "02:00:00",
@@ -49,6 +45,26 @@
 					"dataset": {
 						"referenceName": "SemarchyRepository",
 						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "Set Load ID",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Get New Load ID",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "LoadID",
+					"value": {
+						"value": "@activity('Get New Load ID').output.firstRow",
+						"type": "Expression"
 					}
 				}
 			}
