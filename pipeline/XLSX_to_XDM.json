@@ -48,131 +48,11 @@
 				}
 			},
 			{
-				"name": "Insert into SA",
-				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "Set Load ID",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "ExcelSource",
-						"additionalColumns": [
-							{
-								"name": "LoadID",
-								"value": {
-									"value": "@int(variables('LoadID'))",
-									"type": "Expression"
-								}
-							},
-							{
-								"name": "ClassName",
-								"value": "Nickname"
-							}
-						],
-						"storeSettings": {
-							"type": "AzureBlobStorageReadSettings",
-							"recursive": true,
-							"enablePartitionDiscovery": false
-						}
-					},
-					"sink": {
-						"type": "AzureSqlSink",
-						"writeBehavior": "insert",
-						"sqlWriterUseTableLock": false
-					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"mappings": [
-							{
-								"source": {
-									"name": "Given Name",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "GIVEN_NAME",
-									"type": "String",
-									"physicalType": "nvarchar"
-								}
-							},
-							{
-								"source": {
-									"name": "Top Nickname",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "TOP_NICKNAME",
-									"type": "String",
-									"physicalType": "nvarchar"
-								}
-							},
-							{
-								"source": {
-									"name": "All Nicknames",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "ALL_NICKNAMES",
-									"type": "String",
-									"physicalType": "nvarchar"
-								}
-							},
-							{
-								"source": {
-									"name": "LoadID",
-									"type": "String"
-								},
-								"sink": {
-									"name": "B_LOADID",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 0,
-									"precision": 38
-								}
-							}
-						],
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "NicknamesXLSX",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "Nicknames_SA_Table",
-						"type": "DatasetReference"
-					}
-				]
-			},
-			{
 				"name": "Submit Load",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Insert into SA",
+						"activity": "Data flow1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -213,6 +93,43 @@
 				"linkedServiceName": {
 					"referenceName": "SemarchyRepository",
 					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Data flow1",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "Set Load ID",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "InsertIntoSA2",
+						"type": "DataFlowReference",
+						"parameters": {
+							"loadid": {
+								"value": "'@{variables('LoadID')}'",
+								"type": "Expression"
+							}
+						}
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
 				}
 			}
 		],
