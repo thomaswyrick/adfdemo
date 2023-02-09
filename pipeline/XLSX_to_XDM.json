@@ -37,7 +37,10 @@
 							},
 							"return_value_argument": {
 								"type": "Single",
-								"value": null
+								"value": {
+									"value": "@variables('LoadID')",
+									"type": "Expression"
+								}
 							}
 						},
 						"queryTimeout": "02:00:00",
