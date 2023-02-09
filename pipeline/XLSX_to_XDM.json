@@ -28,29 +28,16 @@
 				}
 			},
 			{
-				"name": "Set Load ID",
-				"type": "SetVariable",
+				"name": "Submit Load",
+				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Get New Load ID",
+						"activity": "Insert Data Into SA",
 						"dependencyConditions": [
 							"Succeeded"
 						]
 					}
 				],
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "LoadID",
-					"value": {
-						"value": "\"@activity('Get New Load ID').output.firstRow.loadid\"",
-						"type": "Expression"
-					}
-				}
-			},
-			{
-				"name": "Submit Load",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -68,7 +55,7 @@
 						},
 						"P_LOAD_ID": {
 							"value": {
-								"value": "@variables('LoadID')",
+								"value": "@activity('Get New Load ID').output.firstRow.loadid",
 								"type": "Expression"
 							},
 							"type": "Decimal"
@@ -89,11 +76,11 @@
 				}
 			},
 			{
-				"name": "Copy data1",
+				"name": "Insert Data Into SA",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Set Load ID",
+						"activity": "Get New Load ID",
 						"dependencyConditions": [
 							"Succeeded"
 						]
