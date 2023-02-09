@@ -16,6 +16,19 @@
 			},
 			"firstRowAsHeader": true
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "Given Name",
+				"type": "String"
+			},
+			{
+				"name": "Top Nickname",
+				"type": "String"
+			},
+			{
+				"name": "All Nicknames",
+				"type": "String"
+			}
+		]
 	}
 }
