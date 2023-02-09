@@ -17,32 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderStoredProcedureName": "[dbo].[GET_NEW_LOADID]",
-						"storedProcedureParameters": {
-							"P_DATA_LOCATION_NAME": {
-								"type": "String",
-								"value": "CustomerB2c"
-							},
-							"P_LOAD_DESCRIPTION": {
-								"type": "String",
-								"value": "XSLX Blob to XDM Demo"
-							},
-							"P_PROGRAM_NAME": {
-								"type": "String",
-								"value": "ADF"
-							},
-							"P_USERNAME": {
-								"type": "String",
-								"value": "semadmin"
-							},
-							"return_value_argument": {
-								"type": "Single",
-								"value": {
-									"value": "@variables('LoadID')",
-									"type": "Expression"
-								}
-							}
-						},
+						"sqlReaderQuery": "declare\n  @v_load_id int\n  begin\n   exec semarchy_repository.dbo.get_new_loadid\n    @return_value_argument=@v_load_id OUTPUT,\n    @p_data_location_name = 'CustomerB2c', /* Data Location Name (as in the UI) */\n    @p_program_name = 'ADF',\t\t/*  Informational. Identifies the Middleware */\n    @p_load_description = N'Blob XSLS to XDM',/* Informational. Describes the load. */\n    \t\t\t\t\t\t/* Note the N to allow accented characters */\n    @p_username = 'semadmin'\t\t/* User initializing the load. */\n    select @v_load_id as loadid\nend",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
