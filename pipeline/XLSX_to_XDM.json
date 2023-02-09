@@ -73,9 +73,13 @@
 							{
 								"name": "LoadID",
 								"value": {
-									"value": "toDecimal(@variables('LoadID'))",
+									"value": "@int(variables('LoadID'))",
 									"type": "Expression"
 								}
+							},
+							{
+								"name": "ClassName",
+								"value": "Nickname"
 							}
 						],
 						"storeSettings": {
@@ -214,7 +218,7 @@
 		],
 		"variables": {
 			"LoadID": {
-				"type": "Array"
+				"type": "String"
 			}
 		},
 		"annotations": []
