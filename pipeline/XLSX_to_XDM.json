@@ -36,7 +36,8 @@
 								"value": "semadmin"
 							},
 							"return_value_argument": {
-								"type": "Single"
+								"type": "Single",
+								"value": null
 							}
 						},
 						"queryTimeout": "02:00:00",
