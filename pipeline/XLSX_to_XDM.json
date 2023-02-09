@@ -42,7 +42,7 @@
 				"typeProperties": {
 					"variableName": "LoadID",
 					"value": {
-						"value": "@activity('Get New Load ID').output.firstRow.loadid",
+						"value": "\"@activity('Get New Load ID').output.firstRow.loadid\"",
 						"type": "Expression"
 					}
 				}
